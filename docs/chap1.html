@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>data_management – chap1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">data_management</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./chap1.html" aria-current="page">
+ <span class="menu-text">Chap1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./chap2.html">
+ <span class="menu-text">Chap2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./chap3.html">
+ <span class="menu-text">Chap3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./chap4.html">
+ <span class="menu-text">Chap4</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-are-data" id="toc-what-are-data" class="nav-link active" data-scroll-target="#what-are-data"><strong>What Are Data?</strong></a>
+  <ul class="collapse">
+  <li><a href="#research-data-defined" id="toc-research-data-defined" class="nav-link" data-scroll-target="#research-data-defined">Research Data Defined</a></li>
+  <li><a href="#types-of-data-and-metadata" id="toc-types-of-data-and-metadata" class="nav-link" data-scroll-target="#types-of-data-and-metadata">Types of Data and Metadata</a></li>
+  <li><a href="#research-data-lifecycle" id="toc-research-data-lifecycle" class="nav-link" data-scroll-target="#research-data-lifecycle">Research Data Lifecycle</a></li>
+  </ul></li>
+  <li><a href="#understanding-data-management" id="toc-understanding-data-management" class="nav-link" data-scroll-target="#understanding-data-management"><strong>Understanding Data Management</strong></a>
+  <ul class="collapse">
+  <li><a href="#why-manage-data" id="toc-why-manage-data" class="nav-link" data-scroll-target="#why-manage-data">Why Manage Data?</a></li>
+  <li><a href="#data-management-stakeholders" id="toc-data-management-stakeholders" class="nav-link" data-scroll-target="#data-management-stakeholders">Data Management Stakeholders</a></li>
+  <li><a href="#data-management-across-the-research-lifecycle" id="toc-data-management-across-the-research-lifecycle" class="nav-link" data-scroll-target="#data-management-across-the-research-lifecycle">Data Management Across the Research Lifecycle</a></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="what-are-data" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-data"><strong>What Are Data?</strong></h2>
+<section id="research-data-defined" class="level3">
+<h3 class="anchored" data-anchor-id="research-data-defined">Research Data Defined</h3>
+<ul>
+<li><p>The fundamental question of the course is what are data, and different organizations have tackled it resulting in various definitions.</p></li>
+<li><p>Data are different for various disciplines and contexts, and there are multiple types of data in an array of contexts, including numeric and textual data, biological samples, and physical collections.</p></li>
+<li><p>Research data and associated researcher materials should be distinguished, and some of them may be required alongside the data to understand them.</p></li>
+<li><p>The most important concept in the entire course is understanding data in the context of the research data life cycle, from project planning to archiving that data as a research output after the project period has ended.</p></li>
+<li><p>The National Institutes of Health define data as recorded factual material necessary to validate research findings, and the National Science Foundation considers data determined by the community of interest through the process of peer review and project management.</p></li>
+<li><p>The NSF examples of data include data, publications, samples, physical collections, software, and models, while the NEH examples include citations, software code, algorithms, digital tools, documentation, databases, geospatial coordinates, reports, and articles.</p></li>
+<li><p>Key concepts in these definitions include validity, data sharing among the community, heterogeneity, and contextualization within research communities.</p></li>
+</ul>
+</section>
+<section id="types-of-data-and-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-data-and-metadata">Types of Data and Metadata</h3>
+<ul>
+<li><p>Types of data include numeric/tabular data, samples (e.g.&nbsp;DNA, blood), physical collections (e.g.&nbsp;plant specimens), software programs/code, databases, algorithms, models, and geodatabases.</p></li>
+<li><p>Background data provides contextual information for analysis and includes questionnaires, code books, and descriptions of methodologies.</p></li>
+<li><p>Research products built on data include reports, conference posters, articles, white papers, books, websites, and blogs.</p></li>
+<li><p>Metadata is structured information that describes, explains, locates, or represents something else (in this case, research data).</p></li>
+<li><p>Minimum metadata elements include who created the data, when it was created/published, and a descriptive name for the dataset. A unique identifier is also necessary to locate the data.</p></li>
+<li><p>The Dublin Core Metadata Element Set and Data Documentation Initiative (DDI) provide additional metadata elements for finding, identifying, interpreting, and using data.</p></li>
+</ul>
+</section>
+<section id="research-data-lifecycle" class="level3">
+<h3 class="anchored" data-anchor-id="research-data-lifecycle">Research Data Lifecycle</h3>
+<ul>
+<li><p>Proper data management is crucial throughout the research lifecycle.</p></li>
+<li><p>Each stage of the lifecycle requires different considerations, responsibilities, and activities.</p></li>
+<li><p>There are different lifecycle models, such as the UK Data Archive, the University of Virginia library, and the Digital Curation Center.</p></li>
+<li><p>The Digital Curation Center’s model includes various data curation activities and involves data, researchers, and curators.</p></li>
+<li><p>Introductions and discussions about personal data experiences or questions are encouraged in the forums.</p></li>
+<li><p>Additional readings and resources are available for those interested in learning more.</p></li>
+</ul>
+</section>
+</section>
+<section id="understanding-data-management" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-data-management"><strong>Understanding Data Management</strong></h2>
+<section id="why-manage-data" class="level3">
+<h3 class="anchored" data-anchor-id="why-manage-data">Why Manage Data?</h3>
+<ul>
+<li><p>Data management supports long-term preservation, access, and use of data</p></li>
+<li><p>Activities of data management include planning, documenting, formatting, storing, anonymizing, and controlling access to data</p></li>
+<li><p>Managing data helps researchers optimize the use of data, collaborate with other researchers, and answer additional questions in the future</p></li>
+<li><p>Data management is important for responsible research conduct and meeting requirements from funding agencies, journal publishers, and research institutions</p></li>
+<li><p>Data management sustains the value of data and increases transparency in research projects</p></li>
+</ul>
+</section>
+<section id="data-management-stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="data-management-stakeholders">Data Management Stakeholders</h3>
+<ul>
+<li><p>The research lifecycle from the Data Documentation Initiative (DDI) provides a framework for understanding where specific data management practices fall.</p></li>
+<li><p>During the discovery and planning phase, researchers need to determine what type and format of data they are going to collect, consider ethical issues, and identify potential reusers of the project data. They should also determine the possible costs surrounding data management and identify appropriate data repositories.</p></li>
+<li><p>During the data collection phase, researchers should follow data management best practices, including file organization, backup and storage strategies, and quality assurance protocols. They should also consider access controls and data security.</p></li>
+<li><p>During the preparation and data analysis phase, researchers may need to clean, manipulate or process the raw data, and should document any changes to the raw data and create a master version to be analyzed and eventually archived. They should also document analysis procedures, such as modifications to the data, the model used, the code used to run the analysis, and hardware and software specifications.</p></li>
+<li><p>During the publication and sharing phase, researchers should prepare their data files and other research materials necessary to interpret and reuse the data in the future. They should consult with information professionals or data repository staff and ensure that their data management meets all of the needs and requirements of the repository.</p></li>
+<li><p>Trusted repositories perform functions to ensure the long-term management of data, including ensuring the integrity of the data, protecting against data loss, and providing access to data.</p></li>
+</ul>
+</section>
+<section id="data-management-across-the-research-lifecycle" class="level3">
+<h3 class="anchored" data-anchor-id="data-management-across-the-research-lifecycle">Data Management Across the Research Lifecycle</h3>
+<ul>
+<li><p>Primary researchers or principal investigators design the study, specify what data will be collected, and determine how to analyze the data and draw conclusions.</p></li>
+<li><p>Graduate students or other staff members collect and manage the data and often analyze it as well.</p></li>
+<li><p>Institutions such as universities and research institutes set internal data management policies, provide data management resources and training, and offer services for archiving data.</p></li>
+<li><p>Data repositories curate, preserve, and provide access to data, work with data creators to ensure data remain useful over time, and place access restrictions on data when necessary.</p></li>
+<li><p>Secondary users of the data include students, faculty, research project team members, private entities, businesses, government officials, journalists, or citizen scientists.</p></li>
+<li><p>Funders provide money to support research projects and require researchers to actively and properly manage their data throughout the research project’s life cycle, with an end goal of making the data available and accessible for sharing.</p></li>
+<li><p>Data management plans are now required of most project proposals, outlining how data will be effectively collected, managed, stored, and preserved for future access.</p></li>
+<li><p>Publishers and journals disseminate scientific discovery and maintain the integrity of the scientific record, increasingly encouraging researchers to cite data and issuing policies that require researchers to make data underlying published results available within a data repository.</p></li>
+<li><p>Proper data management throughout the research lifecycle requires communication and cooperation between various stakeholders.</p></li>
+</ul>
+</section>
+</section>
+<section id="section" class="level1">
+<h1></h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
